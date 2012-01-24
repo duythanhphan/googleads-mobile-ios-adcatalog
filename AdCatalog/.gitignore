@@ -1,0 +1,6 @@
+project.xcworkspace/
+xcuserdata/
+*.pbxuser
+.DS_Store
+
+GoogleAdMobAdsSDK/*
