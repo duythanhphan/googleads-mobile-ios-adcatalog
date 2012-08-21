@@ -14,12 +14,13 @@
 // limitations under the License.
 
 #import "AdCatalogAppDelegate.h"
+#import "AdCatalogUtilities.h"
 #import "MainController.h"
 #import "SampleConstants.h"
 
-
-NSString * const DefaultsKeyShouldShowSplashInterstitial =
+static NSString * const kDefaultsKeyShouldShowSplashInterstitial =
     @"shouldShowSplashInterstitial";
+static NSString * const kDefaultsKeyShouldShowTestAds = @"shouldShowTestAds";
 
 @implementation AdCatalogAppDelegate
 
@@ -30,7 +31,6 @@ NSString * const DefaultsKeyShouldShowSplashInterstitial =
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [self.window addSubview:self.viewController.view];
   [self.window makeKeyAndVisible];
-  NSLog(@"%@", [GADRequest sdkVersion]);
 
   // If the user's switched on the splash interstitial via
   // InterstitialCatalogController fire it up using the SDK's
@@ -42,9 +42,7 @@ NSString * const DefaultsKeyShouldShowSplashInterstitial =
     splashInterstitial_.adUnitID = self.interstitialAdUnitID;
     splashInterstitial_.delegate = self;
 
-    GADRequest *request = [GADRequest request];
-
-    request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID, nil];
+    GADRequest *request = [AdCatalogUtilities adRequest];
 
     UIImage *image = [UIImage imageNamed:@"InitialImage"];
 
@@ -86,14 +84,28 @@ NSString * const DefaultsKeyShouldShowSplashInterstitial =
 - (void)setShouldShowSplashInterstitial:(BOOL)shouldShowSplashInterstitial {
   [[NSUserDefaults standardUserDefaults]
       setBool:shouldShowSplashInterstitial
-      forKey:DefaultsKeyShouldShowSplashInterstitial];
+       forKey:kDefaultsKeyShouldShowSplashInterstitial];
 
   [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (BOOL)shouldShowSplashInterstitial {
   return [[NSUserDefaults standardUserDefaults]
-             boolForKey:DefaultsKeyShouldShowSplashInterstitial];
+             boolForKey:kDefaultsKeyShouldShowSplashInterstitial];
+}
+
+// Updates the NSUserDefault flagging whether the user wants to display test
+// ads.
+- (void)setShouldShowTestAds:(BOOL)shouldShowTestAds {
+  [[NSUserDefaults standardUserDefaults]
+      setBool:shouldShowTestAds
+       forKey:kDefaultsKeyShouldShowTestAds];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)shouldShowTestAds {
+  return [[NSUserDefaults standardUserDefaults]
+             boolForKey:kDefaultsKeyShouldShowTestAds];
 }
 
 @end

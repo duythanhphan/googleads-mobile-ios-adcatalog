@@ -1,5 +1,5 @@
-// InterstitialUseCases.h
-// Copyright 2011 Google Inc.
+// Movie.h
+// Copyright 2012 Google Inc.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,25 +15,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface InterstitialUseCase : NSObject {
-}
-
-@property(nonatomic, assign) Class controllerClass;
-@property(nonatomic, retain) NSString *title;
-
-+ (InterstitialUseCase *)interstitialUseCaseWithTitle:(NSString *)title
-                                      controllerClass:(Class)controllerClass;
-
-@end
-
-
-@interface InterstitialUseCases : NSObject <UITableViewDataSource> {
-}
+@interface Movie : NSObject
 
 @property(nonatomic, retain) NSString *title;
-@property(nonatomic, retain) NSArray *values;
+@property(nonatomic, retain) NSURL *url;
 
-+ (InterstitialUseCases *)singleton;
-- (Class)classForUseCaseAtIndex:(NSUInteger)index;
++ (Movie *)movieWithTitle:(NSString *)title url:(NSURL *)url;
 
 @end

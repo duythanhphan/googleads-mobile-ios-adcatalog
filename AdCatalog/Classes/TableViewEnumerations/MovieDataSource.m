@@ -1,5 +1,5 @@
-// Movies.m
-// Copyright 2011 Google Inc.
+// MovieDataSource.m
+// Copyright 2012 Google Inc.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,41 +13,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "Movies.h"
-
-@implementation Movie
-
-@synthesize title = title_;
-@synthesize url = url_;
-
-#pragma mark Movie methods
-+ (Movie *)movieWithTitle:(NSString *)title url:(NSURL *)url {
-  Movie *result = [[[Movie alloc] init] autorelease];
-  result.title = title;
-  result.url = url;
-  return result;
-}
-
-- (void)dealloc {
-  [title_ release];
-  [url_ release];
-  [super dealloc];
-}
-
-@end
-
+#import "Movie.h"
+#import "MovieDataSource.h"
 
 #pragma mark -
-@implementation Movies
+
+@implementation MovieDataSource
 
 @synthesize values = values_;
 
-#pragma mark Movies methods
-+ (Movies *)singleton {
-  static Movies *result = nil;
+#pragma mark MovieDataSource methods
 
-  if (!result) {
-    result = [[Movies alloc] init];
+- (id)init {
+  if (self = [super init]) {
     NSURL *bundleURL = [[NSBundle mainBundle] bundleURL];
     NSMutableArray *movies = [NSMutableArray array];
 
@@ -61,9 +39,9 @@
     movieURL = [bundleURL URLByAppendingPathComponent:@"PackageTracking.mp4"];
     [movies addObject:[Movie movieWithTitle:@"Package Tracking" url:movieURL]];
 
-    result.values = movies;
+    self.values = movies;
   }
-  return result;
+  return self;
 }
 
 - (NSURL *)urlForMovieAtIndex:(NSUInteger)index {
@@ -73,9 +51,11 @@
 
 - (void)dealloc {
   [values_ release];
+  [super dealloc];
 }
 
 #pragma mark UITableViewDataSource methods
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)sender {
   return 1;
 }

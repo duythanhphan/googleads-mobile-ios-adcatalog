@@ -27,6 +27,7 @@
 
 @interface InterstitialRootController : UIViewController
     <GADInterstitialDelegate, UIAlertViewDelegate> {
+ @private
   GADInterstitial *interstitial_;
   BOOL isPresenting_;
 }
@@ -63,4 +64,3 @@
 - (void)presentationWillEnd;
 
 @end
-

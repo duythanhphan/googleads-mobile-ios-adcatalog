@@ -11,11 +11,6 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		200F1A6014C8CF5C00657437 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 200F1A5814C8CF5C00657437 /* README.txt */; };
-		200F1A6114C8CF5C00657437 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 200F1A5914C8CF5C00657437 /* libGoogleAdMobAds.a */; };
-		208A35F21496DD36004605F7 /* Movies.m in Sources */ = {isa = PBXBuildFile; fileRef = 208A35F11496DD36004605F7 /* Movies.m */; };
-		20D13DDF148DA3BA0052A4F8 /* InterstitialUseCases.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D13DDE148DA3BA0052A4F8 /* InterstitialUseCases.m */; };
-		20FA0F0714A102B900FC3838 /* AdTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FA0F0614A102B900FC3838 /* AdTypes.m */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		6B55A0E81316FD5F009B7D03 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B55A0E71316FD5F009B7D03 /* AudioToolbox.framework */; };
 		6B55A0EA1316FD5F009B7D03 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B55A0E91316FD5F009B7D03 /* MediaPlayer.framework */; };
@@ -40,11 +35,48 @@
 		6B55A41C13183627009B7D03 /* InterstitialRootController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B55A41213183627009B7D03 /* InterstitialRootController.m */; };
 		6B55A41D13183627009B7D03 /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B55A41413183627009B7D03 /* VideoController.m */; };
 		6B55A41E13183627009B7D03 /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B55A41613183627009B7D03 /* VideoListController.m */; };
-		6B55A4B513184407009B7D03 /* BannerSizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B55A4AE13184407009B7D03 /* BannerSizes.m */; };
 		6B55A670131893ED009B7D03 /* Page0.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B55A66F131893ED009B7D03 /* Page0.png */; };
 		6BB0D82F1315947100BB7AEB /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB0D82E1315947100BB7AEB /* MainController.m */; };
 		6BB0D89B1315B44900BB7AEB /* BannerCatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB0D8981315B44900BB7AEB /* BannerCatalogController.m */; };
 		6BB0D89C1315B44900BB7AEB /* InterstitialCatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB0D89A1315B44900BB7AEB /* InterstitialCatalogController.m */; };
+		9003BFD01583E3C700505C79 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9003BFCF1583E3C700505C79 /* MainWindow-iPad.xib */; };
+		9020C325150F9A80002862A2 /* OpenGLExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9020C323150F9A80002862A2 /* OpenGLExampleController.m */; };
+		9020C329150F9AE8002862A2 /* OpenGLExampleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9020C328150F9AE8002862A2 /* OpenGLExampleController.xib */; };
+		9020C33C150F9F2D002862A2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9020C33B150F9F2D002862A2 /* OpenGLES.framework */; };
+		9020C33E150F9F76002862A2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9020C33D150F9F76002862A2 /* QuartzCore.framework */; };
+		9037E9F41540850600141E45 /* TableViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9037E9F31540850600141E45 /* TableViewExampleController.m */; };
+		9037E9F6154085E400141E45 /* AdvancedLayoutCatalogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9037E9F5154085E400141E45 /* AdvancedLayoutCatalogController.xib */; };
+		9043911215C8639200517301 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9043911115C8639200517301 /* libGoogleAdMobAds.a */; };
+		9049921914F6B371006D6A66 /* AdvancedLayoutCatalogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9049921714F6B371006D6A66 /* AdvancedLayoutCatalogController.m */; };
+		9059E2F9154F53E600E2813A /* ScrollViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9059E2F7154F53E600E2813A /* ScrollViewExampleController.m */; };
+		9059E2FC154F543600E2813A /* ScrollViewExampleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9059E2FB154F543600E2813A /* ScrollViewExampleController.xib */; };
+		9059E305154F615F00E2813A /* TabbedViewExampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9059E303154F615E00E2813A /* TabbedViewExampleController.m */; };
+		9059E308154F619E00E2813A /* TabbedViewExampleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9059E307154F619E00E2813A /* TabbedViewExampleController.xib */; };
+		9059E30C154F670300E2813A /* FirstTabbedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9059E30A154F670300E2813A /* FirstTabbedViewController.m */; };
+		9059E30F154F672C00E2813A /* FirstTabbedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9059E30E154F672C00E2813A /* FirstTabbedViewController.xib */; };
+		9059E313154F675900E2813A /* SecondTabbedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9059E311154F675900E2813A /* SecondTabbedViewController.m */; };
+		9059E316154F67A800E2813A /* SecondTabbedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9059E315154F67A800E2813A /* SecondTabbedViewController.xib */; };
+		906567FB152AB56300201339 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 906567EF152AB56300201339 /* EAGLView.m */; };
+		906567FC152AB56300201339 /* ES1Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 906567F1152AB56300201339 /* ES1Renderer.m */; };
+		906567FD152AB56300201339 /* ES2Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 906567F3152AB56300201339 /* ES2Renderer.m */; };
+		906567FE152AB56300201339 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = 906567F5152AB56300201339 /* matrix.c */; };
+		906567FF152AB56300201339 /* Shaders.m in Sources */ = {isa = PBXBuildFile; fileRef = 906567F8152AB56300201339 /* Shaders.m */; };
+		90656800152AB56300201339 /* template.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 906567F9152AB56300201339 /* template.fsh */; };
+		90656801152AB56300201339 /* template.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 906567FA152AB56300201339 /* template.vsh */; };
+		90AA068815CC9BA3008B151D /* AdCatalogUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AA068715CC9BA3008B151D /* AdCatalogUtilities.m */; };
+		90ABE3E31504603B005D069C /* AdvancedLayoutUseCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 90ABE3E21504603B005D069C /* AdvancedLayoutUseCase.m */; };
+		90ABE3E71504625E005D069C /* AdvancedLayoutDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 90ABE3E61504625E005D069C /* AdvancedLayoutDataSource.m */; };
+		90ABE40B150570B1005D069C /* TableViewExampleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90ABE40A150570B1005D069C /* TableViewExampleController.xib */; };
+		90BA222A15DAD192008E685E /* AdType.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA222915DAD192008E685E /* AdType.m */; };
+		90BA222E15DAD24C008E685E /* AdTypeDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA222D15DAD24B008E685E /* AdTypeDataSource.m */; };
+		90BA223115DAD522008E685E /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA223015DAD522008E685E /* Movie.m */; };
+		90BA223415DAD594008E685E /* MovieDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA223315DAD593008E685E /* MovieDataSource.m */; };
+		90BA223715DAD6C1008E685E /* InterstitialUseCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA223615DAD6C0008E685E /* InterstitialUseCase.m */; };
+		90BA223A15DAD731008E685E /* InterstitialUseCaseDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA223915DAD730008E685E /* InterstitialUseCaseDataSource.m */; };
+		90BA223D15DAD900008E685E /* BannerSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA223C15DAD900008E685E /* BannerSize.m */; };
+		90BA224015DAD95F008E685E /* BannerSizeDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BA223F15DAD95E008E685E /* BannerSizeDataSource.m */; };
+		90D4D93A154F7BB80060A156 /* FirstTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D4D936154F7BB80060A156 /* FirstTabIcon.png */; };
+		90D4D93C154F7BB80060A156 /* SecondTabIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D4D938154F7BB80060A156 /* SecondTabIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,21 +85,7 @@
 		1D3623250D0F684500981E51 /* AdCatalogAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCatalogAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* AdCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		200F1A5814C8CF5C00657437 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		200F1A5914C8CF5C00657437 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
-		200F1A5A14C8CF5C00657437 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
-		200F1A5B14C8CF5C00657437 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
-		200F1A5C14C8CF5C00657437 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		200F1A5D14C8CF5C00657437 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
-		200F1A5E14C8CF5C00657437 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		200F1A5F14C8CF5C00657437 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
-		208A35F01496DD36004605F7 /* Movies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movies.h; sourceTree = "<group>"; };
-		208A35F11496DD36004605F7 /* Movies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movies.m; sourceTree = "<group>"; };
 		20D13DDB148861C70052A4F8 /* SampleConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleConstants.h; sourceTree = "<group>"; };
-		20D13DDD148DA3B90052A4F8 /* InterstitialUseCases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialUseCases.h; sourceTree = "<group>"; };
-		20D13DDE148DA3BA0052A4F8 /* InterstitialUseCases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialUseCases.m; sourceTree = "<group>"; };
-		20FA0F0514A102B900FC3838 /* AdTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdTypes.h; sourceTree = "<group>"; };
-		20FA0F0614A102B900FC3838 /* AdTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdTypes.m; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* AdCatalog_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdCatalog_Prefix.pch; sourceTree = "<group>"; };
@@ -100,8 +118,6 @@
 		6B55A41413183627009B7D03 /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
 		6B55A41513183627009B7D03 /* VideoListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListController.h; sourceTree = "<group>"; };
 		6B55A41613183627009B7D03 /* VideoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListController.m; sourceTree = "<group>"; };
-		6B55A4AD13184407009B7D03 /* BannerSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerSizes.h; sourceTree = "<group>"; };
-		6B55A4AE13184407009B7D03 /* BannerSizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerSizes.m; sourceTree = "<group>"; };
 		6B55A66F131893ED009B7D03 /* Page0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Page0.png; path = Resources/Page0.png; sourceTree = "<group>"; };
 		6BB0D82D1315947100BB7AEB /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
 		6BB0D82E1315947100BB7AEB /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
@@ -109,6 +125,77 @@
 		6BB0D8981315B44900BB7AEB /* BannerCatalogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerCatalogController.m; sourceTree = "<group>"; };
 		6BB0D8991315B44900BB7AEB /* InterstitialCatalogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialCatalogController.h; sourceTree = "<group>"; };
 		6BB0D89A1315B44900BB7AEB /* InterstitialCatalogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialCatalogController.m; sourceTree = "<group>"; };
+		9003BFCF1583E3C700505C79 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "Resources/iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		9020C322150F9A7F002862A2 /* OpenGLExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLExampleController.h; path = OpenGLExample/OpenGLExampleController.h; sourceTree = "<group>"; };
+		9020C323150F9A80002862A2 /* OpenGLExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenGLExampleController.m; path = OpenGLExample/OpenGLExampleController.m; sourceTree = "<group>"; };
+		9020C328150F9AE8002862A2 /* OpenGLExampleController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OpenGLExampleController.xib; path = Resources/OpenGLExampleController.xib; sourceTree = "<group>"; };
+		9020C33B150F9F2D002862A2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		9020C33D150F9F76002862A2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9037E9F21540850600141E45 /* TableViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewExampleController.h; sourceTree = "<group>"; };
+		9037E9F31540850600141E45 /* TableViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewExampleController.m; sourceTree = "<group>"; };
+		9037E9F5154085E400141E45 /* AdvancedLayoutCatalogController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdvancedLayoutCatalogController.xib; path = Resources/AdvancedLayoutCatalogController.xib; sourceTree = "<group>"; };
+		9043910815C8639200517301 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		9043910915C8639200517301 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		9043910A15C8639200517301 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		9043910B15C8639200517301 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		9043910C15C8639200517301 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		9043910D15C8639200517301 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		9043910E15C8639200517301 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		9043910F15C8639200517301 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		9043911015C8639200517301 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		9043911115C8639200517301 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
+		9049921614F6B371006D6A66 /* AdvancedLayoutCatalogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedLayoutCatalogController.h; sourceTree = "<group>"; };
+		9049921714F6B371006D6A66 /* AdvancedLayoutCatalogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedLayoutCatalogController.m; sourceTree = "<group>"; };
+		9059E2F6154F53E600E2813A /* ScrollViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollViewExampleController.h; path = ScrollViewExample/ScrollViewExampleController.h; sourceTree = "<group>"; };
+		9059E2F7154F53E600E2813A /* ScrollViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollViewExampleController.m; path = ScrollViewExample/ScrollViewExampleController.m; sourceTree = "<group>"; };
+		9059E2FB154F543600E2813A /* ScrollViewExampleController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScrollViewExampleController.xib; path = Resources/ScrollViewExampleController.xib; sourceTree = "<group>"; };
+		9059E302154F615E00E2813A /* TabbedViewExampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabbedViewExampleController.h; path = TabbedViewExample/TabbedViewExampleController.h; sourceTree = "<group>"; };
+		9059E303154F615E00E2813A /* TabbedViewExampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabbedViewExampleController.m; path = TabbedViewExample/TabbedViewExampleController.m; sourceTree = "<group>"; };
+		9059E307154F619E00E2813A /* TabbedViewExampleController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabbedViewExampleController.xib; path = Resources/TabbedViewExampleController.xib; sourceTree = "<group>"; };
+		9059E309154F670300E2813A /* FirstTabbedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstTabbedViewController.h; path = TabbedViewExample/FirstTabbedViewController.h; sourceTree = "<group>"; };
+		9059E30A154F670300E2813A /* FirstTabbedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstTabbedViewController.m; path = TabbedViewExample/FirstTabbedViewController.m; sourceTree = "<group>"; };
+		9059E30E154F672C00E2813A /* FirstTabbedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FirstTabbedViewController.xib; path = Resources/FirstTabbedViewController.xib; sourceTree = "<group>"; };
+		9059E310154F675900E2813A /* SecondTabbedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecondTabbedViewController.h; path = TabbedViewExample/SecondTabbedViewController.h; sourceTree = "<group>"; };
+		9059E311154F675900E2813A /* SecondTabbedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecondTabbedViewController.m; path = TabbedViewExample/SecondTabbedViewController.m; sourceTree = "<group>"; };
+		9059E315154F67A800E2813A /* SecondTabbedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SecondTabbedViewController.xib; path = Resources/SecondTabbedViewController.xib; sourceTree = "<group>"; };
+		906567EE152AB56300201339 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		906567EF152AB56300201339 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+		906567F0152AB56300201339 /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES1Renderer.h; sourceTree = "<group>"; };
+		906567F1152AB56300201339 /* ES1Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES1Renderer.m; sourceTree = "<group>"; };
+		906567F2152AB56300201339 /* ES2Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES2Renderer.h; sourceTree = "<group>"; };
+		906567F3152AB56300201339 /* ES2Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES2Renderer.m; sourceTree = "<group>"; };
+		906567F4152AB56300201339 /* ESRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESRenderer.h; sourceTree = "<group>"; };
+		906567F5152AB56300201339 /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
+		906567F6152AB56300201339 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		906567F7152AB56300201339 /* Shaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shaders.h; sourceTree = "<group>"; };
+		906567F8152AB56300201339 /* Shaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shaders.m; sourceTree = "<group>"; };
+		906567F9152AB56300201339 /* template.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = template.fsh; sourceTree = "<group>"; };
+		906567FA152AB56300201339 /* template.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = template.vsh; sourceTree = "<group>"; };
+		90AA068615CC9BA3008B151D /* AdCatalogUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdCatalogUtilities.h; sourceTree = "<group>"; };
+		90AA068715CC9BA3008B151D /* AdCatalogUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCatalogUtilities.m; sourceTree = "<group>"; };
+		90ABE3E11504603B005D069C /* AdvancedLayoutUseCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedLayoutUseCase.h; sourceTree = "<group>"; };
+		90ABE3E21504603B005D069C /* AdvancedLayoutUseCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedLayoutUseCase.m; sourceTree = "<group>"; };
+		90ABE3E51504625E005D069C /* AdvancedLayoutDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedLayoutDataSource.h; sourceTree = "<group>"; };
+		90ABE3E61504625E005D069C /* AdvancedLayoutDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedLayoutDataSource.m; sourceTree = "<group>"; };
+		90ABE40A150570B1005D069C /* TableViewExampleController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableViewExampleController.xib; path = Resources/TableViewExampleController.xib; sourceTree = "<group>"; };
+		90BA222815DAD192008E685E /* AdType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdType.h; sourceTree = "<group>"; };
+		90BA222915DAD192008E685E /* AdType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdType.m; sourceTree = "<group>"; };
+		90BA222C15DAD24B008E685E /* AdTypeDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdTypeDataSource.h; sourceTree = "<group>"; };
+		90BA222D15DAD24B008E685E /* AdTypeDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdTypeDataSource.m; sourceTree = "<group>"; };
+		90BA222F15DAD522008E685E /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		90BA223015DAD522008E685E /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		90BA223215DAD593008E685E /* MovieDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDataSource.h; sourceTree = "<group>"; };
+		90BA223315DAD593008E685E /* MovieDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDataSource.m; sourceTree = "<group>"; };
+		90BA223515DAD6C0008E685E /* InterstitialUseCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialUseCase.h; sourceTree = "<group>"; };
+		90BA223615DAD6C0008E685E /* InterstitialUseCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialUseCase.m; sourceTree = "<group>"; };
+		90BA223815DAD72F008E685E /* InterstitialUseCaseDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterstitialUseCaseDataSource.h; sourceTree = "<group>"; };
+		90BA223915DAD730008E685E /* InterstitialUseCaseDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterstitialUseCaseDataSource.m; sourceTree = "<group>"; };
+		90BA223B15DAD8FF008E685E /* BannerSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerSize.h; sourceTree = "<group>"; };
+		90BA223C15DAD900008E685E /* BannerSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerSize.m; sourceTree = "<group>"; };
+		90BA223E15DAD95D008E685E /* BannerSizeDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerSizeDataSource.h; sourceTree = "<group>"; };
+		90BA223F15DAD95E008E685E /* BannerSizeDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerSizeDataSource.m; sourceTree = "<group>"; };
+		90D4D936154F7BB80060A156 /* FirstTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FirstTabIcon.png; path = Resources/FirstTabIcon.png; sourceTree = "<group>"; };
+		90D4D938154F7BB80060A156 /* SecondTabIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SecondTabIcon.png; path = Resources/SecondTabIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +203,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9020C33E150F9F76002862A2 /* QuartzCore.framework in Frameworks */,
+				9020C33C150F9F2D002862A2 /* OpenGLES.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -123,7 +212,7 @@
 				6B55A0EA1316FD5F009B7D03 /* MediaPlayer.framework in Frameworks */,
 				6B55A0EC1316FD5F009B7D03 /* MessageUI.framework in Frameworks */,
 				6B55A0EE1316FD5F009B7D03 /* SystemConfiguration.framework in Frameworks */,
-				200F1A6114C8CF5C00657437 /* libGoogleAdMobAds.a in Frameworks */,
+				9043911215C8639200517301 /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,12 +224,17 @@
 			children = (
 				1D3623240D0F684500981E51 /* AdCatalogAppDelegate.h */,
 				1D3623250D0F684500981E51 /* AdCatalogAppDelegate.m */,
+				90AA068615CC9BA3008B151D /* AdCatalogUtilities.h */,
+				90AA068715CC9BA3008B151D /* AdCatalogUtilities.m */,
 				6BB0D8971315B44900BB7AEB /* BannerCatalogController.h */,
 				6BB0D8981315B44900BB7AEB /* BannerCatalogController.m */,
 				6BB0D8991315B44900BB7AEB /* InterstitialCatalogController.h */,
 				6BB0D89A1315B44900BB7AEB /* InterstitialCatalogController.m */,
 				6BB0D82D1315947100BB7AEB /* MainController.h */,
 				6BB0D82E1315947100BB7AEB /* MainController.m */,
+				9049921614F6B371006D6A66 /* AdvancedLayoutCatalogController.h */,
+				9049921714F6B371006D6A66 /* AdvancedLayoutCatalogController.m */,
+				90ABE4001505387B005D069C /* AdvancedLayoutUseCases */,
 				6B55A40C13183627009B7D03 /* InterstitialUseCases */,
 				6B55A4AC13184407009B7D03 /* TableViewEnumerations */,
 				20D13DDB148861C70052A4F8 /* SampleConstants.h */,
@@ -160,14 +254,16 @@
 		200F1A5614C8CEE400657437 /* GoogleAdMobAdsSDK */ = {
 			isa = PBXGroup;
 			children = (
-				200F1A5814C8CF5C00657437 /* README.txt */,
-				200F1A5914C8CF5C00657437 /* libGoogleAdMobAds.a */,
-				200F1A5A14C8CF5C00657437 /* GADRequestError.h */,
-				200F1A5B14C8CF5C00657437 /* GADRequest.h */,
-				200F1A5C14C8CF5C00657437 /* GADInterstitialDelegate.h */,
-				200F1A5D14C8CF5C00657437 /* GADInterstitial.h */,
-				200F1A5E14C8CF5C00657437 /* GADBannerViewDelegate.h */,
-				200F1A5F14C8CF5C00657437 /* GADBannerView.h */,
+				9043910815C8639200517301 /* GADAdMobExtras.h */,
+				9043910915C8639200517301 /* GADAdNetworkExtras.h */,
+				9043910A15C8639200517301 /* GADAdSize.h */,
+				9043910B15C8639200517301 /* GADBannerView.h */,
+				9043910C15C8639200517301 /* GADBannerViewDelegate.h */,
+				9043910D15C8639200517301 /* GADInterstitial.h */,
+				9043910E15C8639200517301 /* GADInterstitialDelegate.h */,
+				9043910F15C8639200517301 /* GADRequest.h */,
+				9043911015C8639200517301 /* GADRequestError.h */,
+				9043911115C8639200517301 /* libGoogleAdMobAds.a */,
 			);
 			path = GoogleAdMobAdsSDK;
 			sourceTree = SOURCE_ROOT;
@@ -178,6 +274,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				9003BFCE1583E3C600505C79 /* iPad */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -196,6 +293,15 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				90D4D936154F7BB80060A156 /* FirstTabIcon.png */,
+				90D4D938154F7BB80060A156 /* SecondTabIcon.png */,
+				9059E315154F67A800E2813A /* SecondTabbedViewController.xib */,
+				9059E30E154F672C00E2813A /* FirstTabbedViewController.xib */,
+				9059E307154F619E00E2813A /* TabbedViewExampleController.xib */,
+				9059E2FB154F543600E2813A /* ScrollViewExampleController.xib */,
+				9037E9F5154085E400141E45 /* AdvancedLayoutCatalogController.xib */,
+				9020C328150F9AE8002862A2 /* OpenGLExampleController.xib */,
+				90ABE40A150570B1005D069C /* TableViewExampleController.xib */,
 				6B55A36013174DF1009B7D03 /* AdCatalog-Info.plist */,
 				6B55A32413174C0F009B7D03 /* BannerCatalogController.xib */,
 				6B55A32513174C0F009B7D03 /* Default.png */,
@@ -217,6 +323,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9020C33D150F9F76002862A2 /* QuartzCore.framework */,
+				9020C33B150F9F2D002862A2 /* OpenGLES.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
@@ -248,10 +356,10 @@
 				6B55A41013183627009B7D03 /* GameLevelController.m */,
 				6B55A41113183627009B7D03 /* InterstitialRootController.h */,
 				6B55A41213183627009B7D03 /* InterstitialRootController.m */,
-				6B55A41313183627009B7D03 /* VideoController.h */,
-				6B55A41413183627009B7D03 /* VideoController.m */,
 				6B55A41513183627009B7D03 /* VideoListController.h */,
 				6B55A41613183627009B7D03 /* VideoListController.m */,
+				6B55A41313183627009B7D03 /* VideoController.h */,
+				6B55A41413183627009B7D03 /* VideoController.m */,
 			);
 			path = InterstitialUseCases;
 			sourceTree = "<group>";
@@ -259,16 +367,109 @@
 		6B55A4AC13184407009B7D03 /* TableViewEnumerations */ = {
 			isa = PBXGroup;
 			children = (
-				6B55A4AD13184407009B7D03 /* BannerSizes.h */,
-				6B55A4AE13184407009B7D03 /* BannerSizes.m */,
-				20D13DDD148DA3B90052A4F8 /* InterstitialUseCases.h */,
-				20D13DDE148DA3BA0052A4F8 /* InterstitialUseCases.m */,
-				208A35F01496DD36004605F7 /* Movies.h */,
-				208A35F11496DD36004605F7 /* Movies.m */,
-				20FA0F0514A102B900FC3838 /* AdTypes.h */,
-				20FA0F0614A102B900FC3838 /* AdTypes.m */,
+				90BA223B15DAD8FF008E685E /* BannerSize.h */,
+				90BA223C15DAD900008E685E /* BannerSize.m */,
+				90BA223E15DAD95D008E685E /* BannerSizeDataSource.h */,
+				90BA223F15DAD95E008E685E /* BannerSizeDataSource.m */,
+				90BA223515DAD6C0008E685E /* InterstitialUseCase.h */,
+				90BA223615DAD6C0008E685E /* InterstitialUseCase.m */,
+				90BA223815DAD72F008E685E /* InterstitialUseCaseDataSource.h */,
+				90BA223915DAD730008E685E /* InterstitialUseCaseDataSource.m */,
+				90BA222F15DAD522008E685E /* Movie.h */,
+				90BA223015DAD522008E685E /* Movie.m */,
+				90BA223215DAD593008E685E /* MovieDataSource.h */,
+				90BA223315DAD593008E685E /* MovieDataSource.m */,
+				90BA222815DAD192008E685E /* AdType.h */,
+				90BA222915DAD192008E685E /* AdType.m */,
+				90BA222C15DAD24B008E685E /* AdTypeDataSource.h */,
+				90BA222D15DAD24B008E685E /* AdTypeDataSource.m */,
+				90ABE3E11504603B005D069C /* AdvancedLayoutUseCase.h */,
+				90ABE3E21504603B005D069C /* AdvancedLayoutUseCase.m */,
+				90ABE3E51504625E005D069C /* AdvancedLayoutDataSource.h */,
+				90ABE3E61504625E005D069C /* AdvancedLayoutDataSource.m */,
 			);
 			path = TableViewEnumerations;
+			sourceTree = "<group>";
+		};
+		9003BFCE1583E3C600505C79 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				9003BFCF1583E3C700505C79 /* MainWindow-iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		9020C327150F9A9B002862A2 /* OpenGLExample */ = {
+			isa = PBXGroup;
+			children = (
+				906567ED152AB56300201339 /* GLES2Sample */,
+				9020C322150F9A7F002862A2 /* OpenGLExampleController.h */,
+				9020C323150F9A80002862A2 /* OpenGLExampleController.m */,
+			);
+			name = OpenGLExample;
+			sourceTree = "<group>";
+		};
+		9037E9F11540850600141E45 /* TableViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				9037E9F21540850600141E45 /* TableViewExampleController.h */,
+				9037E9F31540850600141E45 /* TableViewExampleController.m */,
+			);
+			path = TableViewExample;
+			sourceTree = "<group>";
+		};
+		9059E2F4154F53AB00E2813A /* ScrollViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				9059E2F6154F53E600E2813A /* ScrollViewExampleController.h */,
+				9059E2F7154F53E600E2813A /* ScrollViewExampleController.m */,
+			);
+			name = ScrollViewExample;
+			sourceTree = "<group>";
+		};
+		9059E301154F610D00E2813A /* TabbedViewExample */ = {
+			isa = PBXGroup;
+			children = (
+				9059E302154F615E00E2813A /* TabbedViewExampleController.h */,
+				9059E303154F615E00E2813A /* TabbedViewExampleController.m */,
+				9059E309154F670300E2813A /* FirstTabbedViewController.h */,
+				9059E30A154F670300E2813A /* FirstTabbedViewController.m */,
+				9059E310154F675900E2813A /* SecondTabbedViewController.h */,
+				9059E311154F675900E2813A /* SecondTabbedViewController.m */,
+			);
+			name = TabbedViewExample;
+			sourceTree = "<group>";
+		};
+		906567ED152AB56300201339 /* GLES2Sample */ = {
+			isa = PBXGroup;
+			children = (
+				906567EE152AB56300201339 /* EAGLView.h */,
+				906567EF152AB56300201339 /* EAGLView.m */,
+				906567F0152AB56300201339 /* ES1Renderer.h */,
+				906567F1152AB56300201339 /* ES1Renderer.m */,
+				906567F2152AB56300201339 /* ES2Renderer.h */,
+				906567F3152AB56300201339 /* ES2Renderer.m */,
+				906567F4152AB56300201339 /* ESRenderer.h */,
+				906567F5152AB56300201339 /* matrix.c */,
+				906567F6152AB56300201339 /* matrix.h */,
+				906567F7152AB56300201339 /* Shaders.h */,
+				906567F8152AB56300201339 /* Shaders.m */,
+				906567F9152AB56300201339 /* template.fsh */,
+				906567FA152AB56300201339 /* template.vsh */,
+			);
+			name = GLES2Sample;
+			path = OpenGLExample/GLES2Sample;
+			sourceTree = "<group>";
+		};
+		90ABE4001505387B005D069C /* AdvancedLayoutUseCases */ = {
+			isa = PBXGroup;
+			children = (
+				9059E301154F610D00E2813A /* TabbedViewExample */,
+				9059E2F4154F53AB00E2813A /* ScrollViewExample */,
+				9037E9F11540850600141E45 /* TableViewExample */,
+				9020C327150F9A9B002862A2 /* OpenGLExample */,
+			);
+			path = AdvancedLayoutUseCases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +539,16 @@
 				6B55A34013174C0F009B7D03 /* FillInTheBlanks.mp4 in Resources */,
 				6B55A34113174C0F009B7D03 /* PackageTracking.mp4 in Resources */,
 				6B55A670131893ED009B7D03 /* Page0.png in Resources */,
-				200F1A6014C8CF5C00657437 /* README.txt in Resources */,
+				90ABE40B150570B1005D069C /* TableViewExampleController.xib in Resources */,
+				9020C329150F9AE8002862A2 /* OpenGLExampleController.xib in Resources */,
+				9037E9F6154085E400141E45 /* AdvancedLayoutCatalogController.xib in Resources */,
+				9059E2FC154F543600E2813A /* ScrollViewExampleController.xib in Resources */,
+				9059E308154F619E00E2813A /* TabbedViewExampleController.xib in Resources */,
+				9059E30F154F672C00E2813A /* FirstTabbedViewController.xib in Resources */,
+				9059E316154F67A800E2813A /* SecondTabbedViewController.xib in Resources */,
+				90D4D93A154F7BB80060A156 /* FirstTabIcon.png in Resources */,
+				90D4D93C154F7BB80060A156 /* SecondTabIcon.png in Resources */,
+				9003BFD01583E3C700505C79 /* MainWindow-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,10 +569,31 @@
 				6B55A41C13183627009B7D03 /* InterstitialRootController.m in Sources */,
 				6B55A41D13183627009B7D03 /* VideoController.m in Sources */,
 				6B55A41E13183627009B7D03 /* VideoListController.m in Sources */,
-				6B55A4B513184407009B7D03 /* BannerSizes.m in Sources */,
-				20D13DDF148DA3BA0052A4F8 /* InterstitialUseCases.m in Sources */,
-				208A35F21496DD36004605F7 /* Movies.m in Sources */,
-				20FA0F0714A102B900FC3838 /* AdTypes.m in Sources */,
+				9049921914F6B371006D6A66 /* AdvancedLayoutCatalogController.m in Sources */,
+				90ABE3E31504603B005D069C /* AdvancedLayoutUseCase.m in Sources */,
+				90ABE3E71504625E005D069C /* AdvancedLayoutDataSource.m in Sources */,
+				9020C325150F9A80002862A2 /* OpenGLExampleController.m in Sources */,
+				906567FB152AB56300201339 /* EAGLView.m in Sources */,
+				906567FC152AB56300201339 /* ES1Renderer.m in Sources */,
+				906567FD152AB56300201339 /* ES2Renderer.m in Sources */,
+				906567FE152AB56300201339 /* matrix.c in Sources */,
+				906567FF152AB56300201339 /* Shaders.m in Sources */,
+				90656800152AB56300201339 /* template.fsh in Sources */,
+				90656801152AB56300201339 /* template.vsh in Sources */,
+				9037E9F41540850600141E45 /* TableViewExampleController.m in Sources */,
+				9059E2F9154F53E600E2813A /* ScrollViewExampleController.m in Sources */,
+				9059E305154F615F00E2813A /* TabbedViewExampleController.m in Sources */,
+				9059E30C154F670300E2813A /* FirstTabbedViewController.m in Sources */,
+				9059E313154F675900E2813A /* SecondTabbedViewController.m in Sources */,
+				90AA068815CC9BA3008B151D /* AdCatalogUtilities.m in Sources */,
+				90BA222A15DAD192008E685E /* AdType.m in Sources */,
+				90BA222E15DAD24C008E685E /* AdTypeDataSource.m in Sources */,
+				90BA223115DAD522008E685E /* Movie.m in Sources */,
+				90BA223415DAD594008E685E /* MovieDataSource.m in Sources */,
+				90BA223715DAD6C1008E685E /* InterstitialUseCase.m in Sources */,
+				90BA223A15DAD731008E685E /* InterstitialUseCaseDataSource.m in Sources */,
+				90BA223D15DAD900008E685E /* BannerSize.m in Sources */,
+				90BA224015DAD95F008E685E /* BannerSizeDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,11 +613,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/GoogleAdMobAdsSDK\"",
 				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = AdCatalog;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -401,11 +632,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../GoogleAdMobAdsSDK\"",
 					"\"$(SRCROOT)/GoogleAdMobAdsSDK\"",
 				);
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = AdCatalog;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

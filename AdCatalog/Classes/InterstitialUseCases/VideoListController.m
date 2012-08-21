@@ -18,11 +18,8 @@
 
 @interface VideoListController (Private)
 
--(void)animationDidStop:(CAAnimation *)animation
-               finished:(BOOL)flag
-                context:(void *)isVideoControllerHidden;
-- (NSArray *)bundledVideoURLs;
 - (void)setVideoControllerHidden:(BOOL)isHidden;
+- (void)updateViewFrameForStatusBarDisplay;
 
 @end
 
@@ -32,35 +29,6 @@
 @synthesize videoController = videoController_;
 @synthesize videoTableView = videoTableView_;
 @synthesize movies = movies_;
-
-// The VideoListController's view is a UIView acting as a control group for
-// a UINavigationBar, a UITableView and a UIToolbar (this simplifies animating
-// all three). When a table row is selected, VideoListController reproduces
-// the left-to-right animation of a UINavigationController, bringing its
-// InterstitialRootController subclass VideoController in from stage right.
-// This slow-transitioning animation requires a little extra coordination
-// between these two controllers to assure neither of their views is
-// torn-down or otherwise invalidated before the transition's complete.
--(void)animationDidStop:(CAAnimation *)animation
-               finished:(BOOL)flag
-                context:(void *)isVideoControllerHidden {
-  // Now that the VideoController's completely off-screen, let it know it's
-  // fully hidden and remove it from the view hierarchy.
-  if (isVideoControllerHidden) {
-    [self.videoController wasHidden];
-    [self.videoController.view removeFromSuperview];
-  } else {
-    // Now that the VideoController's fully on-screen initiate playback and
-    // remove the control group from the hierarchy, making VideoController
-    // the root.
-    NSUInteger selectionIndex =
-        [[self.videoTableView indexPathForSelectedRow] indexAtPosition:1];
-    NSURL *url = [self.movies urlForMovieAtIndex:selectionIndex];
-    [self.videoController playVideoWithURL:url];
-
-    [self.view removeFromSuperview];
-  }
-}
 
 - (void)dealloc {
   [controlGroupView_ release];
@@ -84,52 +52,75 @@
     self.videoController =
         [[[VideoController alloc] initWithListController:self] autorelease];
   }
-
   return self;
-}
-
-// When this hook is invoked by videoController the interstitial's been
-// dismissed and the player is full-screen. Take this opportunity to slip
-// the receiver's view back into the hierarchy behind it in preparation
-// for subsequent left-to-right animation.
-- (void)presentationDidEnd {
-  self.view.hidden = YES;
-  [self.videoController.view.window addSubview:self.view];
-  [self.videoController.view.window sendSubviewToBack:self.view];
-  self.view.hidden = NO;
 }
 
 // Either slides videoController in from the right (YES) or controlGroup_ in
 // from the left (NO) as dictated by isHidden.
 - (void)setVideoControllerHidden:(BOOL)isHidden {
-  [UIView beginAnimations:NSStringFromSelector(_cmd)
-                  context:(void *)(long)isHidden];
+  if (!isHidden) {
+    [self addChildViewController:self.videoController];
+    self.videoController.view.hidden = NO;
+    self.videoController.view.frame = self.view.bounds;
+    [UIView transitionWithView:self.view
+                      duration:0.7
+                       options:UIViewAnimationOptionTransitionFlipFromRight
+                    animations:^{
+                      self.controlGroupView.hidden = YES;
+                      [self.view addSubview:self.videoController.view];
+                    } completion:^(BOOL finished){
+                      [self.videoController didMoveToParentViewController:self];
+                      NSUInteger selectionIndex =
+                          [[self.videoTableView indexPathForSelectedRow]
+                              indexAtPosition:1];
+                      NSURL *url =
+                          [self.movies urlForMovieAtIndex:selectionIndex];
+                      [self.videoController playVideoWithURL:url];
+                    }];
+  } else {
+    if (![UIApplication sharedApplication].statusBarHidden) {
+      [self updateViewFrameForStatusBarDisplay];
+    }
+    self.controlGroupView.frame = self.view.bounds;
+    [UIView transitionWithView:self.view
+                      duration:0.7
+                       options:UIViewAnimationOptionTransitionFlipFromLeft
+                    animations:^{
+                      self.videoController.view.hidden = YES;
+                      self.controlGroupView.hidden = NO;
+                    } completion:^(BOOL finished) {
+                      [self.videoController wasHidden];
+                      [self.videoController willMoveToParentViewController:nil];
+                      [self.videoController.view removeFromSuperview];
+                      [self.videoController removeFromParentViewController];
+                    }];
+  }
+}
 
-  [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-  [UIView setAnimationDuration:0.50];
-  [UIView setAnimationDelegate:self];
-
-  CGFloat xMotion =
-      [UIScreen mainScreen].bounds.size.width * ((isHidden) ? 1.0 : -1.0);
-
-  self.videoController.view.frame =
-      CGRectOffset(self.videoController.view.frame, xMotion, 0.0);
-
-  self.controlGroupView.frame = CGRectOffset(self.controlGroupView.frame,
-                                             xMotion, 0.0);
-  [UIView commitAnimations];
+- (void)updateViewFrameForStatusBarDisplay {
+  CGRect tempFrame = self.view.frame;
+  if (self.interfaceOrientation == UIInterfaceOrientationPortrait) {
+    tempFrame.origin.y +=
+        [UIApplication sharedApplication].statusBarFrame.size.height;
+  } else if (self.interfaceOrientation ==
+                UIInterfaceOrientationPortraitUpsideDown) {
+    tempFrame.origin.y -=
+        [UIApplication sharedApplication].statusBarFrame.size.height;
+  } else if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+    tempFrame.origin.x +=
+        [UIApplication sharedApplication].statusBarFrame.size.width;
+  } else if (self.interfaceOrientation ==
+                UIInterfaceOrientationLandscapeRight) {
+    tempFrame.origin.x -=
+        [UIApplication sharedApplication].statusBarFrame.size.width;
+  }
+  self.view.frame = tempFrame;
 }
 
 // When a video's selected add the videoController to the hierarchy stage
 // right and animate it in (the inverse of presentation/videoDidEnd).
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  CGRect screenBounds = [UIScreen mainScreen].bounds;
-
-  self.videoController.view.frame = CGRectOffset(screenBounds,
-                                                 screenBounds.size.width, 0.0);
-
-  [[self.view superview] addSubview:self.videoController.view];
   [self setVideoControllerHidden:NO];
 }
 
@@ -143,9 +134,19 @@
 // The Movies singleton is videoTableView's dataSource and the receiver is its
 // delegate for input events.
 - (void)viewDidLoad {
-  self.movies = [Movies singleton];
+  self.movies = [[[MovieDataSource alloc] init] autorelease];
   self.videoTableView.dataSource = self.movies;
   self.videoTableView.delegate = self;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+    (UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
+}
+
+- (BOOL)automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers {
+  return YES;
 }
 
 @end

@@ -22,6 +22,7 @@
 // selects a clip. It presents an interstitial before handing control over
 // to MPMoviePlayerController.
 @interface VideoController : InterstitialRootController {
+ @private
   MPMoviePlayerController *moviePlayerController_;
   VideoListController *listController_;
   BOOL didInitialMoviePlayerControllerStop_;

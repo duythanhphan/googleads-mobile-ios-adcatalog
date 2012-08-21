@@ -23,6 +23,7 @@
 @class GameLevelController;
 
 @interface GameLevelView : UIView {
+ @private
   NSTimer *timer_;
   BOOL *isPopulatedCell_;
   int populatedCellCount_;
@@ -35,7 +36,7 @@
 
 @end
 
-@protocol GameLevelControllerDelegate <NSObject>
+@protocol GameLevelControllerDelegate<NSObject>
 
 - (void)nextGameLevel:(GameLevelController *)sender;
 - (void)doneWithGameLevel:(GameLevelController *)sender;
@@ -57,4 +58,3 @@
 - (void)setCellImage:(UIImage *)cellImage;
 
 @end
-

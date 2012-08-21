@@ -15,20 +15,18 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIKit.h>
+#import "MovieDataSource.h"
 #import "VideoController.h"
-#import "Movies.h"
 
 // Manages a UITableView of video clips and the right-to-left
 // UINavigationController-style animation of each clip being loaded.
-@interface VideoListController : UIViewController <UITableViewDelegate> {
-}
+@interface VideoListController : UIViewController<UITableViewDelegate>
 
 @property(nonatomic, retain) IBOutlet UIView *controlGroupView;
 @property(nonatomic, retain) VideoController *videoController;
 @property(nonatomic, retain) IBOutlet UITableView *videoTableView;
-@property(nonatomic, retain) Movies *movies;
+@property(nonatomic, retain) MovieDataSource *movies;
 
-- (void)presentationDidEnd;
 - (IBAction)done:(id)sender;
 - (void)videoDidEnd;
 

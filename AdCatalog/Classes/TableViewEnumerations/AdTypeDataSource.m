@@ -1,5 +1,5 @@
-// AdTypes.m
-// Copyright 2011 Google Inc.
+// AdTypeDataSource.m
+// Copyright 2012 Google Inc.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,43 +13,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AdTypes.h"
+#import "AdType.h"
+#import "AdTypeDataSource.h"
+#import "AdvancedLayoutCatalogController.h"
 #import "BannerCatalogController.h"
 #import "InterstitialCatalogController.h"
 
-@implementation AdType
-
-@synthesize controllerClass = controllerClass_;
-@synthesize title = title_;
-
-#pragma mark AdType methods
-+ (AdType *)adTypeWithTitle:(NSString *)title
-            controllerClass:(Class)controllerClass {
-  AdType *result = [[[AdType alloc] init] autorelease];
-  result.title = title;
-  result.controllerClass = controllerClass;
-  return result;
-}
-
-- (void)dealloc {
-  [title_ release];
-  [super dealloc];
-}
-
-@end
-
-
 #pragma mark -
-@implementation AdTypes
+
+@implementation AdTypeDataSource
 
 @synthesize values = values_;
 
-#pragma mark AdTypes methods
-+ (AdTypes *)singleton {
-  static AdTypes *result = nil;
+#pragma mark AdTypeDataSource methods
 
-  if (!result) {
-    result = [[AdTypes alloc] init];
+- (id)init {
+  if (self = [super init]) {
     NSMutableArray *adTypes = [NSMutableArray array];
     [adTypes addObject:[AdType
         adTypeWithTitle:@"Banners"
@@ -57,9 +36,12 @@
     [adTypes addObject:[AdType
         adTypeWithTitle:@"Interstitials"
         controllerClass:[InterstitialCatalogController class]]];
-    result.values = adTypes;
+    [adTypes addObject:[AdType
+        adTypeWithTitle:@"AdvancedLayouts"
+        controllerClass:[AdvancedLayoutCatalogController class]]];
+    self.values = adTypes;
   }
-  return result;
+  return self;
 }
 
 - (Class)classForAdTypeAtIndex:(NSUInteger)index {
@@ -69,15 +51,17 @@
 
 - (void)dealloc {
   [values_ release];
+  [super dealloc];
 }
 
 #pragma mark UITableViewDataSource methods
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)sender {
   return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)sender
-    cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   NSString *identifier = NSStringFromClass([self class]);
   UITableViewCell *result =
       [sender dequeueReusableCellWithIdentifier:identifier];
@@ -87,7 +71,7 @@
                                 reuseIdentifier:identifier] autorelease];
   }
 
-  InterstitialUseCase *useCase =
+  AdType *useCase =
       [self.values objectAtIndex:[indexPath indexAtPosition:1]];
   result.textLabel.text = useCase.title;
   return result;

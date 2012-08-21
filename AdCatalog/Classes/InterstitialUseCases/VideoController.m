@@ -19,9 +19,6 @@
 
 @interface VideoController (Private)
 
-- (void)presentationDidBegin;
-- (void)presentationDidEnd;
-- (void)presentationDidFailWithError:(GADRequestError *)requestError;
 - (void)releaseMovieController;
 
 @end
@@ -39,7 +36,6 @@
 - (id)initWithListController:(VideoListController *)listController {
   if ((self = [super initWithNibName:nil bundle:nil])) {
     listController_ = [listController retain];
-    self.view.frame = [UIScreen mainScreen].bounds;
   }
 
   return self;
@@ -48,6 +44,8 @@
 // Inform the super-controller that the user has dismissed the player by
 // pressing "Done."
 - (void)moviePlayerPlaybackDidFinish:(NSNotification *)notification {
+  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+  [UIApplication sharedApplication].statusBarHidden = NO;
   [listController_ videoDidEnd];
 }
 
@@ -57,15 +55,17 @@
 - (void)playVideoWithURL:(NSURL *)url {
   [[UIApplication sharedApplication]
       setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-
-  self.view.frame = [UIScreen mainScreen].bounds;
+  self.view.autoresizesSubviews = YES;
+  self.view.autoresizingMask =
+      UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
   moviePlayerController_ =
       [[MPMoviePlayerController alloc] initWithContentURL:url];
-  moviePlayerController_.shouldAutoplay = FALSE;
-
-  moviePlayerController_.view.frame = self.view.frame;
-
+  moviePlayerController_.shouldAutoplay = NO;
+  moviePlayerController_.view.frame = self.view.bounds;
+  moviePlayerController_.view.autoresizesSubviews = YES;
+  moviePlayerController_.view.autoresizingMask =
+      UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
   [self presentInterstitial];
 }
 
@@ -76,7 +76,6 @@
 
   [self.view addSubview:moviePlayerController_.view];
   [self.view sendSubviewToBack:moviePlayerController_.view];
-
   moviePlayerController_.view.hidden = NO;
 
   [super presentationDidBegin];
@@ -84,18 +83,14 @@
 
 - (void)presentationDidEnd {
   moviePlayerController_.controlStyle = MPMovieControlStyleFullscreen;
-
   [[NSNotificationCenter defaultCenter]
       addObserver:self
       selector:@selector(moviePlayerPlaybackDidFinish:)
       name:MPMoviePlayerPlaybackDidFinishNotification
       object:moviePlayerController_];
-
   [UIApplication sharedApplication].statusBarStyle =
       UIStatusBarStyleBlackTranslucent;
-
   [moviePlayerController_ play];
-  [listController_ presentationDidEnd];
 
   [super presentationDidEnd];
 }
@@ -119,7 +114,12 @@
 
 - (void)wasHidden {
   [self releaseMovieController];
-  [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+    (UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
 }
 
 @end

@@ -13,13 +13,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "AdCatalogUtilities.h"
 #import "BannerCatalogController.h"
 #import "SampleConstants.h"
 
-
 @interface BannerCatalogController (Private)
 
-- (CGSize)selectedBannerSize;
+- (GADAdSize)selectedBannerSize;
+- (void)layoutGADBannerView;
 
 @end
 
@@ -28,19 +29,17 @@
 @synthesize sizeTableView = sizeTableView_;
 @synthesize bannerSizes = bannerSizes_;
 
-#pragma mark BannerCatalogController methods
 // BannerCatalogController is the sizeTableView_'s delegate for input events and
 // the BannerSizes singleton is its datasource.
 - (void)viewDidLoad {
-  self.bannerSizes = [BannerSizes singleton];
+  self.bannerSizes = [[[BannerSizeDataSource alloc] init] autorelease];
+  self.bannerSizes.delegate = self;
   self.sizeTableView.delegate = self;
   self.sizeTableView.dataSource = self.bannerSizes;
 
   adView_ = [[GADBannerView alloc] initWithFrame:CGRectZero];
-
   adView_.adUnitID = BANNER_AD_UNIT_ID;
   adView_.delegate = self;
-
   [adView_ setRootViewController:self];
 
   [self.view insertSubview:adView_ aboveSubview:self.sizeTableView];
@@ -51,6 +50,26 @@
   [self dismissModalViewControllerAnimated:YES];
 }
 
+// Set the origin of the adView frame per the selected size for the banner.
+- (void)layoutGADBannerView {
+  CGSize bannerCGSize = CGSizeFromGADAdSize(adView_.adSize);
+  CGRect frame = adView_.frame;
+  CGSize screenSize = CGSizeMake(self.view.bounds.size.width,
+                                 self.view.bounds.size.height);
+  frame.origin.x = (screenSize.width - bannerCGSize.width) / 2.0;
+  frame.origin.y = screenSize.height - bannerCGSize.height;
+  adView_.frame = frame;
+  if (adView_.hidden) {
+    adView_.hidden = NO;
+  }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+    (UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
+}
+
 - (void)dealloc {
   sizeTableView_.dataSource = nil;
   sizeTableView_.delegate = nil;
@@ -59,14 +78,16 @@
   adView_.delegate = nil;
   [adView_ release];
 
+  bannerSizes_.delegate = nil;
   [bannerSizes_ release];
 
   [super dealloc];
 }
 
 #pragma mark UITableView delegate methods
-// Returns the currently selected BannerSize's CGSize to load.
-- (CGSize)selectedBannerSize {
+
+// Returns the currently selected BannerSize's GADAdSize to load.
+- (GADAdSize)selectedBannerSize {
   NSInteger index =
       [[self.sizeTableView indexPathForSelectedRow] indexAtPosition:1];
   return [self.bannerSizes sizeForBannerSizeAtIndex:index];
@@ -77,28 +98,10 @@
 // of the display and load a generic GADRequest.
 - (void)tableView:(UITableView *)sender
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  CGSize bannerSize = [self selectedBannerSize];
-
   adView_.hidden = YES;
-
-  // Resize the adView frame per the selected banner's dimensions.
-  CGRect frame = adView_.frame;
-  frame.size = bannerSize;
-  // Set its x,y origin such that the banner is centered at the bottom of the
-  // screen.
-  frame.origin.x = (self.view.frame.size.width - bannerSize.width) / 2.0;
-  frame.origin.y = self.view.frame.size.height - bannerSize.height;
-
-  // Move it up a bit to give the banner a nice "framed" look.
-  if (CGSizeEqualToSize(bannerSize, GAD_SIZE_300x250)) {
-    frame.origin.y -= frame.origin.x;
-  }
-  adView_.frame = frame;
-
-  GADRequest *request = [GADRequest request];
-  request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID, nil];
-
-  [adView_ loadRequest:request];
+  adView_.adSize = [self selectedBannerSize];
+  [self layoutGADBannerView];
+  [adView_ loadRequest:[AdCatalogUtilities adRequest]];
 }
 
 #pragma mark GADBannerView callback methods
@@ -111,6 +114,15 @@
 - (void)adView:(GADBannerView *)view
     didFailToReceiveAdWithError:(GADRequestError *)error {
   NSLog(@"Failed to receive banner ad.");
+}
+
+#pragma mark BannerSizes delegate methods
+
+// The data source for the table changed the entries so we have to reload the
+// tableview.
+- (void)bannerSizesChanged {
+  [self.sizeTableView reloadData];
+  adView_.hidden = YES;
 }
 
 @end

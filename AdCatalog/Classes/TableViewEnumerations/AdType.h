@@ -1,5 +1,5 @@
-// Movies.h
-// Copyright 2011 Google Inc.
+// AdType.h
+// Copyright 2012 Google Inc.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,23 +15,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Movie : NSObject {
-}
+@interface AdType : NSObject
 
+@property(nonatomic, assign) Class controllerClass;
 @property(nonatomic, retain) NSString *title;
-@property(nonatomic, retain) NSURL *url;
 
-+ (Movie *)movieWithTitle:(NSString *)title url:(NSURL *)url;
-
-@end
-
-
-@interface Movies : NSObject <UITableViewDataSource> {
-}
-
-@property(nonatomic, retain) NSArray *values;
-
-+ (Movies *)singleton;
-- (NSURL *)urlForMovieAtIndex:(NSUInteger)index;
++ (AdType *)adTypeWithTitle:(NSString *)title
+            controllerClass:(Class)controllerClass;
 
 @end

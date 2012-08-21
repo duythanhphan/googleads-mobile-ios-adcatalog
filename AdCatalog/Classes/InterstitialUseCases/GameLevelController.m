@@ -35,7 +35,7 @@
 @interface GameLevelController (Private)
 
 - (void)didEnd;
-- (void)setDelegate:(id <GameLevelControllerDelegate>)delegate;
+- (void)setDelegate:(id<GameLevelControllerDelegate>)delegate;
 - (void)setToolbarHidden:(BOOL)isHidden animate:(BOOL)shouldAnimate;
 
 @end
@@ -47,7 +47,6 @@
 
 - (void)begin {
   [self clear];
-
   timer_ = [NSTimer scheduledTimerWithTimeInterval:POPULATION_RATE_SECONDS
                                             target:self
                                           selector:@selector(populateCell)
@@ -89,8 +88,8 @@
   CGPoint cellPoint = CGPointMake(x, (self.frame.size.height -
                                       cellFieldHeight) / 2.0);
 
-  for (int r = 0; r < cellCount_ / cellsPerRow_; r++) {
-    for (int c = 0; c < cellsPerRow_; c++) {
+  for (int r = 0; r < cellCount_ / cellsPerRow_; ++r) {
+    for (int c = 0; c < cellsPerRow_; ++c) {
       if (isPopulatedCell_[(r * cellsPerRow_) + c]) {
         [self.cellImage drawAtPoint:cellPoint];
       }
@@ -109,20 +108,18 @@
 }
 
 - (void)populateCell {
-  CGFloat visibleHeight = self.layer.visibleRect.size.height;
-
   if (!isPopulatedCell_) {
+    CGFloat visibleHeight = self.layer.visibleRect.size.height;
     int cellRows = (visibleHeight - CELL_MARGIN) /
-                   (self.cellImage.size.height + CELL_MARGIN);
+                      (self.cellImage.size.height + CELL_MARGIN);
 
     cellsPerRow_ = (self.frame.size.width - CELL_MARGIN) /
-                   (self.cellImage.size.width + CELL_MARGIN);
+                      (self.cellImage.size.width + CELL_MARGIN);
 
     cellCount_ = cellsPerRow_ * cellRows;
     isPopulatedCell_ = calloc(cellCount_, sizeof(BOOL));
     populatedCellCount_ = 0;
   }
-
   int candidateIndex = arc4random() % cellCount_;
 
   while ((populatedCellCount_ < cellCount_) &&
@@ -148,23 +145,20 @@
 @synthesize levelLabel = levelLabel_;
 @synthesize toolbar = toolbar_;
 
--(void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
-  [((GameLevelView *)self.view) begin];
-}
-
 - (void)begin {
+  self.levelLabel.center = self.view.center;
   self.levelLabel.alpha = 1.0;
-
   [self setToolbarHidden:YES animate:NO];
 
-  [UIView beginAnimations:NSStringFromSelector(_cmd) context:nil];
-  [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-  [UIView setAnimationDuration:1.0];
-  [UIView setAnimationDelegate:self];
-
-  self.levelLabel.alpha = 0.0;
-
-  [UIView commitAnimations];
+  [UIView animateWithDuration:1.0
+                        delay:0.0
+                      options:UIViewAnimationCurveLinear
+                   animations:^{
+                     self.levelLabel.alpha = 0.0;
+                   }
+                   completion:^(BOOL finished){
+                     [((GameLevelView *)self.view) begin];
+                   }];
 }
 
 - (void)setToolbarHidden:(BOOL)isHidden animate:(BOOL)shouldAnimate {
@@ -177,13 +171,13 @@
   }
 
   if (shouldAnimate) {
-    [UIView beginAnimations:NSStringFromSelector(_cmd) context:nil];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-    [UIView setAnimationDuration:0.5];
-
-    self.toolbar.frame = frame;
-
-    [UIView commitAnimations];
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options:UIViewAnimationCurveEaseIn
+                     animations:^{
+                       self.toolbar.frame = frame;
+                     }
+                     completion:nil];
   } else {
     self.toolbar.frame = frame;
   }
@@ -224,6 +218,21 @@
   self.levelLabel.text = self.label;
   ((GameLevelView *)self.view).controller = self;
   [self setToolbarHidden:YES animate:NO];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+    (UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInt
+                                duration:(NSTimeInterval)duration {
+  // Remove the toolbar in case it was already being shown, then restart the
+  // level on orientation changes.
+  [self setToolbarHidden:YES animate:NO];
+  [((GameLevelView *)self.view) clear];
+  [((GameLevelView *)self.view) begin];
 }
 
 @end

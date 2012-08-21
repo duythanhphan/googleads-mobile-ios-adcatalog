@@ -13,6 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "AdCatalogUtilities.h"
 #import "InterstitialRootController.h"
 #import "SampleConstants.h"
 
@@ -22,16 +23,12 @@
 // the ad, as they must share a root controller.
 
 @interface InterstitialRootView : UIView {
-  InterstitialRootController *controller_;
   UIActivityIndicatorView *activityIndicator;
 }
 
 @property(nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 
-- (id)initWithController:(InterstitialRootController *)controller;
-
 @end
-
 
 @interface InterstitialRootController (Private)
 
@@ -44,15 +41,13 @@
 
 @synthesize activityIndicator;
 
-- (id)initWithController:(InterstitialRootController *)controller {
+- (id)init {
   if ((self = [super initWithFrame:CGRectZero])) {
-    controller_ = controller;
     self.backgroundColor = [UIColor blackColor];
 
     activityIndicator =
         [[UIActivityIndicatorView alloc]
           initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-
     [self addSubview:activityIndicator];
     [activityIndicator release];
   }
@@ -61,15 +56,16 @@
 }
 
 - (void)layoutSubviews {
-  CGSize size = self.frame.size;
+  CGSize size = self.bounds.size;
 
   activityIndicator.frame =
-    CGRectMake((size.width / 2.0) -
-               (activityIndicator.frame.size.width / 2.0),
-               (size.height / 2.0) -
-               (activityIndicator.frame.size.height / 2.0),
-               activityIndicator.frame.size.width,
-               activityIndicator.frame.size.height);
+      CGRectMake((size.width / 2.0) -
+                    (activityIndicator.frame.size.width / 2.0),
+                 (size.height / 2.0) -
+                    (activityIndicator.frame.size.height / 2.0),
+                 activityIndicator.frame.size.width,
+                 activityIndicator.frame.size.height);
+
 }
 
 @end
@@ -83,9 +79,7 @@
                bundle:(NSBundle *)nibBundleOrNil {
   if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
     self.adUnitID = INTERSTITIAL_AD_UNIT_ID;
-    self.interstitialRequest = [GADRequest request];
-    self.interstitialRequest.testDevices =
-        [NSArray arrayWithObjects:GAD_SIMULATOR_ID, nil];
+    self.interstitialRequest = [AdCatalogUtilities adRequest];
   }
   return self;
 }
@@ -155,8 +149,7 @@
 }
 
 - (void)loadView {
-  self.view =
-      [[[InterstitialRootView alloc] initWithController:self] autorelease];
+  self.view =[[[InterstitialRootView alloc] init] autorelease];
 }
 
 // Initiates the request and presentation process. The activity indicator
@@ -197,7 +190,6 @@
   [super viewDidUnload];
 }
 
-
 // UIViewController hook used to generate presentationWillEnd, indicating
 // that the interstitial is now on its way off-screen.
 - (void)viewWillAppear:(BOOL)animated {
@@ -205,6 +197,12 @@
     [self presentationWillEnd];
   }
   [super viewWillAppear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+    (UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
 }
 
 @end

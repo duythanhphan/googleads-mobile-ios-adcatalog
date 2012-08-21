@@ -1,5 +1,5 @@
-// BannerSizes.h
-// Copyright 2011 Google Inc.
+// AdvancedLayoutUseCase.h
+// Copyright 2012 Google Inc.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,24 +15,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BannerSize : NSObject {
-}
+@interface AdvancedLayoutUseCase : NSObject
 
-@property(nonatomic, assign) CGSize size;
+@property(nonatomic, assign) Class controllerClass;
 @property(nonatomic, retain) NSString *title;
 
-+ (BannerSize *)instanceWithTitle:(NSString *)title size:(CGSize)size;
-
-@end
-
-
-@interface BannerSizes : NSObject <UITableViewDataSource> {
-}
-
-@property(nonatomic, retain) NSString *title;
-@property(nonatomic, retain) NSArray *values;
-
-+ (BannerSizes *)singleton;
-- (CGSize)sizeForBannerSizeAtIndex:(NSUInteger)index;
-
++ (AdvancedLayoutUseCase *)advancedLayoutUseCaseWithTitle:(NSString *)title
+    controllerClass:(Class)controllerClass;
 @end

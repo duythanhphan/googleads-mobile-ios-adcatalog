@@ -1,5 +1,5 @@
-// InterstitialUseCases.m
-// Copyright 2011 Google Inc.
+// InterstitialUseCaseDataSource.m
+// Copyright 2012 Google Inc.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,46 +14,22 @@
 // limitations under the License.
 
 #import "GameController.h"
-#import "InterstitialUseCases.h"
+#import "InterstitialUseCase.h"
+#import "InterstitialUseCaseDataSource.h"
 #import "VideoListController.h"
 
-
-@implementation InterstitialUseCase
-
-@synthesize controllerClass = controllerClass_;
-@synthesize title = title_;
-
-#pragma mark InterstitialUseCase methods
-+ (InterstitialUseCase *)interstitialUseCaseWithTitle:(NSString *)title
-                                      controllerClass:(Class)controllerClass {
-  InterstitialUseCase *result =
-      [[[InterstitialUseCase alloc] init] autorelease];
-  result.title = title;
-  result.controllerClass = controllerClass;
-  return result;
-}
-
-- (void)dealloc {
-  [title_ release];
-  [super dealloc];
-}
-
-@end
-
-
 #pragma mark -
-@implementation InterstitialUseCases
+
+@implementation InterstitialUseCaseDataSource
 
 @synthesize title = title_;
 @synthesize values = values_;
 
-#pragma mark NewInterstitialUseCases methods
-+ (InterstitialUseCases *)singleton {
-  static InterstitialUseCases *result = nil;
+#pragma mark InterstitialUseCaseDataSource methods
 
-  if (!result) {
-    result = [[InterstitialUseCases alloc] init];
-    result.title = @"Use Cases";
+- (id)init {
+  if (self = [super init]) {
+    self.title = @"Use Cases";
 
     NSMutableArray *useCases = [NSMutableArray array];
     [useCases addObject:[InterstitialUseCase
@@ -65,9 +41,9 @@
     [useCases addObject:[InterstitialUseCase
         interstitialUseCaseWithTitle:@"Video Pre-Roll"
         controllerClass:[VideoListController class]]];
-    result.values = useCases;
+    self.values = useCases;
   }
-  return result;
+  return self;
 }
 
 - (Class)classForUseCaseAtIndex:(NSUInteger)index {
@@ -78,9 +54,11 @@
 - (void)dealloc {
   [title_ release];
   [values_ release];
+  [super dealloc];
 }
 
 #pragma mark UITableViewDataSource methods
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)sender {
   return 1;
 }

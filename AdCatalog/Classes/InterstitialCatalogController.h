@@ -16,19 +16,20 @@
 #import <UIKit/UIKit.h>
 #import "GADInterstitial.h"
 #import "GADInterstitialDelegate.h"
-#import "InterstitialUseCases.h"
+#import "InterstitialUseCaseDataSource.h"
 
 // Manages a UITableView of InterstitialUseCases and a switch toggling
 // the splash interstitial. The trivial use case is handled directly
 // but the others have their own controllers.
 @interface InterstitialCatalogController : UIViewController
     <GADInterstitialDelegate, UITableViewDelegate> {
+ @private
   GADInterstitial *basicInterstitial_;
 }
 
 @property(nonatomic, retain) IBOutlet UITableView *useCaseTableView;
 @property(nonatomic, retain) IBOutlet UISwitch *splashSwitch;
-@property(nonatomic, retain) InterstitialUseCases *useCases;
+@property(nonatomic, retain) InterstitialUseCaseDataSource *useCases;
 
 - (IBAction)done:(id)sender;
 - (IBAction)toggleSplash:(id)sender;

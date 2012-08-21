@@ -19,9 +19,6 @@
 // An InterstitialRootController subclass managing two GameLevelControllers,
 // fading between the two with an interstitial between them on the way up.
 @interface GameController : InterstitialRootController
-             <GameLevelControllerDelegate> {
-  GameLevelController *level0Controller_;
-  GameLevelController *level1Controller_;
-}
+    <GameLevelControllerDelegate>
 
 @end

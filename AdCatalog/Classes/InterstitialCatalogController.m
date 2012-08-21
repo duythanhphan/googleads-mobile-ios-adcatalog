@@ -13,10 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "InterstitialCatalogController.h"
 #import "AdCatalogAppDelegate.h"
+#import "AdCatalogUtilities.h"
+#import "InterstitialCatalogController.h"
 #import "InterstitialRootController.h"
-#import "InterstitialUseCases.h"
+#import "InterstitialUseCaseDataSource.h"
 #import "SampleConstants.h"
 
 @implementation InterstitialCatalogController
@@ -25,15 +26,33 @@
 @synthesize useCaseTableView = useCaseTableView_;
 @synthesize useCases = useCases_;
 
-- (GADRequest *)buildGADRequest {
-  GADRequest *request = [GADRequest request];
-  request.testDevices = [NSArray arrayWithObjects:GAD_SIMULATOR_ID, nil];
-  return request;
-}
-
 // When the user's done simply pop back out to MainController.
 - (IBAction)done:(id)sender {
   [self dismissModalViewControllerAnimated:YES];
+}
+
+// Update AdCatalogAppDelegate.shouldShowSplashInterstitial as per the user.
+- (IBAction)toggleSplash:(id)sender {
+  ((AdCatalogAppDelegate *)[UIApplication sharedApplication].delegate).
+      shouldShowSplashInterstitial = splashSwitch_.on;
+}
+
+// The receiver is the useCaseTableView_'s delegate for input events
+// and the InterstitialUseCaseDataSource singleton is its datasource.
+- (void)viewDidLoad {
+  AdCatalogAppDelegate *delegate =
+      (AdCatalogAppDelegate *)[UIApplication sharedApplication].delegate;
+  splashSwitch_.on = delegate.shouldShowSplashInterstitial;
+
+  self.useCases = [[[InterstitialUseCaseDataSource alloc] init] autorelease];
+  useCaseTableView_.dataSource = self.useCases;
+  useCaseTableView_.delegate = self;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+    (UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
 }
 
 - (void)dealloc {
@@ -51,6 +70,7 @@
 }
 
 #pragma mark GADInterstitialDelegate methods
+
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
   [ad presentFromRootViewController:self];
 }
@@ -69,8 +89,9 @@
 }
 
 #pragma mark UITableViewDelegate methods
-// Whenever the user selects one of the InterstitialUseCases see if it has a
-// controller. If so simply present it, but if not load a trivial one.
+
+// Whenever the user selects one of the InterstitialUseCaseDataSource see if it
+// has a controller. If so simply present it, but if not load a trivial one.
 - (void)tableView:(UITableView *)sender
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   Class controllerClass =
@@ -87,27 +108,9 @@
       basicInterstitial_.adUnitID = INTERSTITIAL_AD_UNIT_ID;
       basicInterstitial_.delegate = self;
     }
-    [basicInterstitial_ loadRequest:[self buildGADRequest]];
+    [basicInterstitial_ loadRequest:[AdCatalogUtilities adRequest]];
   }
   [useCaseTableView_ reloadData];
-}
-
-// Update AdCatalogAppDelegate.shouldShowSplashInterstitial as per the user.
-- (IBAction)toggleSplash:(id)sender {
-  ((AdCatalogAppDelegate *)[UIApplication sharedApplication].delegate).
-      shouldShowSplashInterstitial = splashSwitch_.on;
-}
-
-// The receiver is the useCaseTableView_'s delegate for input events
-// and the InterstitialUseCases singleton is its datasource.
-- (void)viewDidLoad {
-  splashSwitch_.on =
-      ((AdCatalogAppDelegate *)[UIApplication sharedApplication].delegate).
-          shouldShowSplashInterstitial;
-
-  self.useCases = [InterstitialUseCases singleton];
-  useCaseTableView_.dataSource = self.useCases;
-  useCaseTableView_.delegate = self;
 }
 
 @end

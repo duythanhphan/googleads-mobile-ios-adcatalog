@@ -21,9 +21,10 @@
 
 // The app delegate simply (0) loads the MainController, (1) manages the
 // splash interstitial if shouldShouldSplashInterstitial and (2) vends the
-// interstitialAnUnitID also used by InterstitialUseCases.
+// interstitialAnUnitID also used by InterstitialUseCaseDataSource.
 @interface AdCatalogAppDelegate : NSObject
     <UIApplicationDelegate, GADInterstitialDelegate> {
+ @private
   GADInterstitial *splashInterstitial_;
 }
 
@@ -31,7 +32,7 @@
 @property(nonatomic, retain) IBOutlet MainController *viewController;
 
 @property(nonatomic, assign) BOOL shouldShowSplashInterstitial;
+@property(nonatomic, assign) BOOL shouldShowTestAds;
 @property(nonatomic, readonly) NSString *interstitialAdUnitID;
 
 @end
-

@@ -14,18 +14,21 @@
 // limitations under the License.
 
 #import <UIKit/UIKit.h>
-#import "AdTypes.h"
+#import "AdTypeDataSource.h"
 
 @class BannerCatalogController;
 @class InterstitialCatalogController;
 
 // The main screen simply displays a list of the available ad types, i.e.
 // banners and interstitials. Each of these is mapped to a catalog controller
-// by the AdTypes class.
-@interface MainController : UIViewController <UITableViewDelegate> {
-}
+// by the AdTypeDataSource class.
+@interface MainController : UIViewController<UITableViewDelegate>
 
 @property(nonatomic, retain) IBOutlet UITableView *adTypeTableView;
-@property(nonatomic, retain) AdTypes *adTypes;
+@property(nonatomic, retain) AdTypeDataSource *adTypes;
+@property(nonatomic, retain) IBOutlet UISwitch *testModeSwitch;
+@property(nonatomic, retain) IBOutlet UILabel *testModeLabel;
+
+- (IBAction)toggleTestingSwitch:(id)sender;
 
 @end

@@ -1,5 +1,5 @@
-// AdTypes.h
-// Copyright 2011 Google Inc.
+// OpenGLExampleController.h
+// Copyright 2012 Google Inc.
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,26 +13,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "EAGLView.h"
+#import "GADBannerView.h"
 
-@interface AdType : NSObject {
+@interface OpenGLExampleController : UIViewController
+    <GADBannerViewDelegate> {
+ @private
+  BOOL didReceiveFirstAd_;
+  GADBannerView *bannerView_;
 }
 
-@property(nonatomic, assign) Class controllerClass;
-@property(nonatomic, retain) NSString *title;
+@property(nonatomic, retain) IBOutlet EAGLView *glView;
 
-+ (AdType *)adTypeWithTitle:(NSString *)title
-            controllerClass:(Class)controllerClass;
-
-@end
-
-
-@interface AdTypes : NSObject <UITableViewDataSource> {
-}
-
-@property(nonatomic, retain) NSArray *values;
-
-+ (AdTypes *)singleton;
-- (Class)classForAdTypeAtIndex:(NSUInteger)index;
+- (IBAction)done:(id)sender;
 
 @end

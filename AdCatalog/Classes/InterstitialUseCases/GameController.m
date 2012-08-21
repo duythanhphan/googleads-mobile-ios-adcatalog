@@ -18,145 +18,97 @@
 
 @interface GameController (Private)
 
-- (void)animateTransitionFromView:(UIView *)fromView toView:(UIView *)toView;
-
-- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag;
-- (void)gameLevelEndButtonAction:(GameLevelController *)sender;
-- (void)presentationDidBegin;
-- (void)presentationDidEnd;
-- (void)presentationDidFailWithError:(GADRequestError *)requestError;
-- (void)presentInterstitial;
-- (void)presentationWillEnd;
+- (GameLevelController *)newGameLevelControllerWithLabel:(NSString *)label
+                                               imageName:(NSString *)imageName;
+- (void)completeGameLevel:(GameLevelController *)gameLevel;
+- (void)presentGameLevel:(GameLevelController *)gameLevel;
+- (void)initGameWithLevels;
 
 @end
 
 @implementation GameController
 
-// For demonstration purposes the game transitions between levels and between
-// level and interstitial with a fade. This method simply encapsulates that
-// fade as a generic operation between two views. The toView is passed as the
-// animation's context to let animationDidStop:finished:context: know which
-// case it's wrapping up.
-- (void)animateTransitionFromView:(UIView *)fromView toView:(UIView *)toView {
-  [UIView beginAnimations:NSStringFromSelector(_cmd) context:toView];
-  [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-  [UIView setAnimationDuration:0.5];
-  [UIView setAnimationDelegate:self];
-
-  toView.alpha = 1.0;
-  fromView.alpha = 0.0;
-
-  [UIView commitAnimations];
-}
-
-// If the fade that just concluded was from level zero to the receiver's
-// view (black background), hide the status bar and initiate interstitial
-// load. Otherwise, if the fade was to level zero so simply restart it.
--(void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
-         context:(void *)toView {
-  if (toView == self.view) {
-    CGFloat statusBarHeight = [[UIApplication sharedApplication]
-                                  statusBarFrame].size.height;
-    [[UIApplication sharedApplication]
-        setStatusBarHidden:YES
-        withAnimation:UIStatusBarAnimationFade];
-    // Resize and reposition view's frame to account for extra space
-    CGRect frame = self.view.frame;
-    frame.origin.y -= statusBarHeight;
-    frame.size.height += statusBarHeight;
-    self.view.frame = frame;
-
-    [self presentInterstitial];
-  } else if (toView == level0Controller_.view) {
-      [level0Controller_ begin];
-  }
-}
+  GameLevelController *firstGameLevel_;
 
 - (GameLevelController *)newGameLevelControllerWithLabel:(NSString *)label
                                                imageName:(NSString *)imageName {
-  GameLevelController *result = [[GameLevelController alloc] init];
-
+  GameLevelController *result =
+      [[[GameLevelController alloc] init] autorelease];
   result.label = label;
-  result.delegate = self;
-
   [result setCellImage:[UIImage imageNamed:imageName]];
 
   return result;
 }
 
+- (void)addGameLeveController:(GameLevelController *)levelController {
+  if (!firstGameLevel_) {
+    firstGameLevel_ = levelController;
+  }
+  levelController.delegate = self;
+  levelController.view.frame = self.view.bounds;
+  [self addChildViewController:levelController];
+}
+
+- (void)initGameWithLevels {
+  // Just add two levels for this example, but can easily add more
+  // if we want.
+  firstGameLevel_ = nil;
+  [self addGameLeveController:
+      [self newGameLevelControllerWithLabel:@"Level 0"
+                                  imageName:@"Level0Cell"]];
+  [self addGameLeveController:
+      [self newGameLevelControllerWithLabel:@"Level 1"
+                                  imageName:@"Level1Cell"]];
+}
+
 - (void)loadView {
   [super loadView];
-  self.view.frame = [[UIScreen mainScreen] applicationFrame];
+  self.view.frame = [[UIScreen mainScreen] bounds];
   self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-
-  level0Controller_ = [self newGameLevelControllerWithLabel:@"Level 0"
-                                                  imageName:@"Level0Cell"];
-
-  level1Controller_ = [self newGameLevelControllerWithLabel:@"Level 1"
-                                                  imageName:@"Level1Cell"];
-
-  // Keep the second level invisible until its time to for it to fade in.
-  level1Controller_.view.alpha = 0.0;
-  [self.view addSubview:level0Controller_.view];
-  [self.view addSubview:level1Controller_.view];
+  [self initGameWithLevels];
 }
 
 // Initiate the fade to either the receiver's view (black background) or the
 // level zero. These animations will conclude in either interstitial display
 // or a new game, respectively.
 - (void)nextGameLevel:(GameLevelController *)sender {
-  if (sender == level0Controller_) {
-    [self animateTransitionFromView:level0Controller_.view
-                             toView:self.view];
+  [self completeGameLevel:sender];
+  if ([self.childViewControllers count] > 0) {
+    [self presentInterstitial];
   } else {
-    [self animateTransitionFromView:level1Controller_.view
-                             toView:level0Controller_.view];
+    // Start a new game by adding the levels again.
+    [self initGameWithLevels];
+    [self presentGameLevel:firstGameLevel_];
+    [firstGameLevel_ begin];
   }
 }
 
-// Now that the interstitial has taken over the screen, slip level one in
+// Now that the interstitial has taken over the screen, slip next level in
 // behind it and make it visible.
 - (void)presentationDidBegin {
-  [self.view sendSubviewToBack:level1Controller_.view];
-  level1Controller_.view.alpha = 1.0;
+  if ([self.childViewControllers count] > 0) {
+    [self presentGameLevel:[self.childViewControllers objectAtIndex:0]];
+  }
   [super presentationDidBegin];
 }
 
-// Now that the interstitial's no longer on-screen and the status bar's been
-// restored, adjust level one's frame to respect this and start it.
+// Now that the interstitial's no longer on-screen, adjust level one's frame
+// to respect this and start it.
 - (void)presentationDidEnd {
-  [level1Controller_ begin];
-
+  if ([self.childViewControllers count] > 0) {
+    [[self.childViewControllers objectAtIndex:0] begin];
+  }
   [super presentationDidEnd];
 }
 
 // If interstitial load failed, fade the next level in over (not from) the
-// displayed black background. The frame of view will be adjusted for the
-// status bar once it's been restored in presentationWillEnd.
+// displayed black background. The frame of view will be adjusted once it's
+// been restored in presentationWillEnd.
 - (void)presentationDidFailWithError:(GADRequestError *)requestError {
-  [self animateTransitionFromView:nil
-                           toView:level1Controller_.view];
-
+  if ([self.childViewControllers count] > 0) {
+    [self presentGameLevel:[self.childViewControllers objectAtIndex:0]];
+  }
   [super presentationDidFailWithError:requestError];
-}
-
-// For timing purposes start fading the status bar back in now rather than
-// once the interstitial's already gone.
-- (void)presentationWillEnd {
-  [[UIApplication sharedApplication]
-      setStatusBarHidden:NO
-      withAnimation:UIStatusBarAnimationFade];
-
-  // Resize and reposition our view to account for the space consumed by the
-  // status bar
-  CGFloat statusBarHeight = [[UIApplication sharedApplication]
-                                statusBarFrame].size.height;
-  CGRect frame = self.view.frame;
-  frame.origin.y += statusBarHeight;
-  frame.size.height -= statusBarHeight;
-  self.view.frame = frame;
-
-  [super presentationWillEnd];
 }
 
 // When the user's done with this use case simply pop back out to the
@@ -170,8 +122,48 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
 
-  if (level1Controller_.view.alpha < 1.0) {
-    [level0Controller_ begin];
+  if ([self.childViewControllers count] > 0) {
+    if ([self.childViewControllers objectAtIndex:0] == firstGameLevel_) {
+      [firstGameLevel_ begin];
+    }
+  }
+}
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  if ([self.childViewControllers count] > 0) {
+    if ([self.childViewControllers objectAtIndex:0] == firstGameLevel_) {
+      // Load the view so that the transition to the first level doesn't
+      // go to a black screen mid-transition.
+      [self presentGameLevel:firstGameLevel_];
+    }
+  }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+    (UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return YES;
+}
+
+// Forward all of the orientation change events to the child view controller
+// currently being presented.
+- (BOOL)automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers {
+  return YES;
+}
+
+- (void)completeGameLevel:(GameLevelController *)gameLevel {
+  if ([self.childViewControllers containsObject:gameLevel]) {
+    [gameLevel willMoveToParentViewController:nil];
+    [gameLevel.view removeFromSuperview];
+    [gameLevel removeFromParentViewController];
+  }
+}
+
+- (void)presentGameLevel:(GameLevelController *)gameLevel {
+  if ([self.childViewControllers containsObject:gameLevel]) {
+    [self.view addSubview:gameLevel.view];
+    [gameLevel didMoveToParentViewController:self];
   }
 }
 

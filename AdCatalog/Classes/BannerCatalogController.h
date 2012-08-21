@@ -14,18 +14,19 @@
 // limitations under the License.
 
 #import <UIKit/UIKit.h>
+#import "BannerSizeDataSource.h"
 #import "GADBannerView.h"
-#import "BannerSizes.h"
 
 // Manages a UITableView of available BannerSizes, requesting a matching
 // ad when one is selected.
 @interface BannerCatalogController : UIViewController
-    <UITableViewDelegate, GADBannerViewDelegate> {
+    <UITableViewDelegate, GADBannerViewDelegate, BannerSizesDelegate> {
+ @private
   GADBannerView *adView_;
 }
 
 @property(nonatomic, retain) IBOutlet UITableView *sizeTableView;
-@property(nonatomic, retain) BannerSizes *bannerSizes;
+@property(nonatomic, retain) BannerSizeDataSource *bannerSizes;
 
 - (IBAction)done:(id)sender;
 
