@@ -13,6 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import <AdSupport/ASIdentifierManager.h>
+
 #import "AdCatalogAppDelegate.h"
 #import "AdCatalogUtilities.h"
 #import "MainController.h"
@@ -29,7 +31,18 @@ static NSString * const kDefaultsKeyShouldShowTestAds = @"shouldShowTestAds";
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [self.window addSubview:self.viewController.view];
+
+  // Print IDFA (from AdSupport Framework) for iOS 6 and UDID for iOS < 6.
+  if (NSClassFromString(@"ASIdentifierManager")) {
+    NSLog(@"GoogleAdMobAdsSDK ID for testing: %@" ,
+              [[[ASIdentifierManager sharedManager]
+                  advertisingIdentifier] UUIDString]);
+  } else {
+    NSLog(@"GoogleAdMobAdsSDK ID for testing: %@" ,
+              [[UIDevice currentDevice] uniqueIdentifier]);
+  }
+
+  [self.window setRootViewController:self.viewController];
   [self.window makeKeyAndVisible];
 
   // If the user's switched on the splash interstitial via

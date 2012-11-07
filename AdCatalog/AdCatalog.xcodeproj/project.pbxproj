@@ -262,7 +262,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				CF6D953E162F5BE90087D7B8 /* StoreKit.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -316,6 +315,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF6D953E162F5BE90087D7B8 /* StoreKit.framework */,
 				90A1B4B41613CEB1008819C3 /* AdSupport.framework */,
 				9020C33D150F9F76002862A2 /* QuartzCore.framework */,
 				9020C33B150F9F2D002862A2 /* OpenGLES.framework */,
