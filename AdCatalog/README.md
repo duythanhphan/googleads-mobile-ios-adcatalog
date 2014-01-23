@@ -49,14 +49,14 @@ Getting started with the Ad Catalog with Xcode:
 1. Launch Xcode, select File > Open, navigate to AdCatalog.xcodeproj, select it
    and click Open.
 2. Add the Google AdMob Ads SDK to your project.
-   ** Download the most recent Google AdMob Ads SDK for iOS, unzip it.
-   ** Right-Click the GoogleAdMobAdsSDK folder in the Project Navigator pane.
-   ** Select 'Add Files To "AdCatalog"...'
-   ** Navigate to the directory you previously unzipped the Google AdMob Ads SDK
+   * Download the most recent Google AdMob Ads SDK for iOS, unzip it.
+   * Right-Click the GoogleAdMobAdsSDK folder in the Project Navigator pane.
+   * Select 'Add Files To "AdCatalog"...'
+   * Navigate to the directory you previously unzipped the Google AdMob Ads SDK
      into, select all of the files there, check "Copy items into destination
      group's folder (if needed)", and click 'Add'.
 3. Insert your AdMob publisher ID into the application.
-   ** Open SampleConstants.h, replace the strings,
+   * Open SampleConstants.h, replace the strings,
      'REPLACE_WITH_YOUR_ADMOB_AD_UNIT_ID', with your publisher id.
 
 Click the Run button and enjoy!
